@@ -4,22 +4,21 @@ A warm, orange-themed Discord theme with floating panels and optimized performan
 
 ## Installation
 
-### Vencord
+### Method 1: Online Themes (Easiest)
 
 1. Open Discord → **Settings** → **Vencord** → **Themes**
-2. Click **"Open Themes Folder"**
-3. Create `sunset.theme.css` and paste:
-
-```css
-/**
- * @name Sunset Theme
- * @author Mihai
- * @version 1.0.0
- */
-
-@import url('https://raw.githubusercontent.com/MihaiStraculencu/sunset_theme/master/build/sunset.css');
+2. Click **"Online Themes"** tab
+3. Paste this URL:
 ```
+https://raw.githubusercontent.com/MihaiStraculencu/sunset_theme/master/themes/sunset.theme.css
+```
+4. Click **"Add Theme"** and enable it
 
+### Method 2: Download File
+
+1. Download [`sunset.theme.css`](https://raw.githubusercontent.com/MihaiStraculencu/sunset_theme/master/themes/sunset.theme.css)
+2. Open Discord → **Settings** → **Vencord** → **Themes** → **"Open Themes Folder"**
+3. Drag and drop the downloaded file into the folder
 4. Enable the theme in Discord
 
 ## Development
