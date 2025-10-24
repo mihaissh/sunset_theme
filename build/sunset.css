@@ -1,13 +1,3 @@
-/**
- * @name Sunset Theme
- * @description A warm, orange-themed Discord theme with floating panels, liquid glass effects, and optimized performance.
- * @author Mihai
- * @version 1.0.0
- * @website https://github.com/MihaiStraculencu/sunset_theme
- * @source https://github.com/MihaiStraculencu/sunset_theme/blob/master/themes/sunset.theme.css
-*/
-
-/* import theme modules */
 /* main.css */
 /* No external fonts needed - using system Apple fonts for best performance */
 
@@ -136,26 +126,39 @@ body {
     }
     
     /* Channel list items with smooth ease-out hover */
-    .content_e05d47 /* channel item */,
-    .layout_e05d47 /* channel layout */,
-    .link_e05d47 /* channel link */ {
-        border-radius: 6px;
+    .scroller__629e4 li[class*="containerDefault"] /* individual channel item */ {
+        border-radius: 8px !important;
+        margin: 2px 8px !important;
         transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     }
     
-    .content_e05d47:hover,
-    .layout_e05d47:hover,
-    .link_e05d47:hover {
+    .scroller__629e4 li[class*="containerDefault"]:hover {
         background-color: var(--hover) !important;
-        transform: translateX(2px);
+        transform: translateX(2px) !important;
     }
     
-    .content_e05d47:active,
-    .layout_e05d47:active,
-    .link_e05d47:active {
+    .scroller__629e4 li[class*="containerDefault"]:active {
         background-color: var(--active) !important;
-        transform: translateX(0);
+        transform: translateX(0) !important;
+    }
+    
+    /* Remove double borders/shadows and disable hover on inner elements */
+    .scroller__629e4 li[class*="containerDefault"] [class*="content_"],
+    .scroller__629e4 li[class*="containerDefault"] [class*="layout_"],
+    .scroller__629e4 li[class*="containerDefault"] [class*="link_"] {
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        transition: none !important;
+    }
+    
+    .scroller__629e4 li[class*="containerDefault"] [class*="content_"]:hover,
+    .scroller__629e4 li[class*="containerDefault"] [class*="layout_"]:hover,
+    .scroller__629e4 li[class*="containerDefault"] [class*="link_"]:hover {
+        background: transparent !important;
+        transform: none !important;
     }
 
     /* fix discord's idiotic server banners */
@@ -410,195 +413,37 @@ body {
         background: none;
     }
 
-    /* ================================
-       LIQUID GLASS CHAT BAR - OPTIMIZED
-       iOS 26 inspired design
-       ================================ */
-    
-    /* Container setup */
-    .channelTextArea_f75fb0 {
-        margin: 0 16px 20px !important;
-        padding: 0 !important;
-    }
-    
-    /* Main liquid glass wrapper */
-    .channelTextArea__74017 {
-        position: relative;
-        border-radius: 24px;
-        min-height: 48px;
-        padding: 0;
-        overflow: hidden;
-        
-        /* Liquid glass material */
-        background: linear-gradient(135deg, 
-            hsla(0, 0%, 20%, 0.6), 
-            hsla(0, 0%, 15%, 0.5) 50%, 
-            hsla(0, 0%, 18%, 0.55)
-        );
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
-        
-        /* Subtle shadows and highlights */
-        box-shadow: 
-            inset 0 1px 0 hsla(0, 0%, 100%, 0.08),
-            inset 0 -1px 0 hsla(0, 0%, 0%, 0.15),
-            0 2px 12px hsla(0, 0%, 0%, 0.2),
-            0 0 0 1px hsla(0, 0%, 100%, 0.04);
-        
-        /* Smooth transitions - only on interaction */
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    /* Gradient border using pseudo-element */
-    .channelTextArea__74017::before {
-        content: '';
-        position: absolute;
-        inset: -1px;
-        border-radius: 24px;
-        padding: 1px;
-        background: linear-gradient(135deg,
-            hsla(0, 0%, 100%, 0.1),
-            hsla(0, 0%, 100%, 0.03),
-            hsla(0, 0%, 100%, 0.06)
-        );
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, 
-                      linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        z-index: 0;
-    }
-    
-    /* Focus state - enhanced glow */
-    .channelTextArea__74017:focus-within {
-        background: linear-gradient(135deg,
-            hsla(30, 60%, 50%, 0.12),
-            hsla(0, 0%, 15%, 0.6) 50%,
-            hsla(30, 60%, 50%, 0.08)
-        );
-        box-shadow: 
-            inset 0 1px 0 hsla(30, 60%, 50%, 0.15),
-            inset 0 -1px 0 hsla(0, 0%, 0%, 0.25),
-            0 4px 20px hsla(30, 60%, 50%, 0.15),
-            0 0 0 1px hsla(30, 60%, 50%, 0.25),
-            0 0 24px hsla(30, 60%, 50%, 0.06);
-        transform: translateY(-1px);
-    }
-    
-    .channelTextArea__74017:focus-within::before {
-        background: linear-gradient(135deg,
-            hsla(30, 60%, 50%, 0.25),
-            hsla(30, 60%, 50%, 0.08),
-            hsla(30, 60%, 50%, 0.18)
-        );
-    }
-    
-    /* Remove default backgrounds */
-    .scrollableContainer__74017,
-    .themedBackground__74017 {
+    /* Remove background behind chatbox */
+    .channelTextArea_f75fb0,
+    .channelBottomBarArea_f75fb0,
+    .form_f75fb0,
+    .formWithLoadedChatInput_f75fb0 {
         background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
     }
     
-    /* Inner container - flexbox layout */
-    .inner__74017 {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        min-height: 48px;
-        padding: 0 16px;
-        background: transparent;
+    /* Simple chat bar with expand and fade transition */
+    .channelTextArea__74017 {
+        width: 40% !important;
+        margin-left: 30% !important;
+        margin-right: 30% !important;
+        opacity: 0.7 !important;
+        border-radius: 14px !important;
+        will-change: width, margin-left, margin-right, opacity !important;
+        transition: width 0.2s ease-out,
+                    margin-left 0.2s ease-out,
+                    margin-right 0.2s ease-out,
+                    opacity 0.15s ease-out !important;
     }
     
-    /* Attach button */
-    .attachButton__74017 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 8px;
-    }
-    
-    /* Text input area */
-    .sansAttachButton__74017 {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        padding: 0;
-        margin: 0;
-        background: transparent;
-    }
-    
-    .textArea__74017 {
-        flex: 1;
-        padding: 0;
-        margin: 0;
-        background: transparent;
-    }
-    
-    .slateTextArea_ec4baf {
-        padding: 0;
-        margin: 0;
-        background: transparent;
-    }
-    
-    /* Placeholder styling */
-    .slateTextArea_ec4baf [data-slate-placeholder='true'] {
-        color: hsla(0, 0%, 100%, 0.4);
-        font-weight: 400;
-    }
-    
-    /* Action buttons container */
-    .buttons__74017 {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 0;
-    }
-    
-    .buttonContainer__74017 {
-        display: flex;
-        align-items: center;
-    }
-    
-    /* Liquid glass buttons */
-    .buttonContainer__74017 button {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        background: hsla(0, 0%, 100%, 0.05);
-        border: 1px solid hsla(0, 0%, 100%, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                    background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .buttonContainer__74017 button:hover {
-        background: hsla(30, 60%, 50%, 0.2);
-        border-color: hsla(30, 60%, 50%, 0.3);
-        transform: scale(1.08) translateY(-1px);
-        box-shadow: 
-            0 4px 12px hsla(30, 60%, 50%, 0.2),
-            inset 0 1px 0 hsla(0, 0%, 100%, 0.15);
-    }
-    
-    .buttonContainer__74017 button:active {
-        transform: scale(0.96);
-        background: hsla(30, 60%, 50%, 0.15);
-    }
-    
-    /* Attachment preview bar */
-    .attachWrapper__74017 {
-        border-radius: 20px 20px 0 0;
-        background: hsla(0, 0%, 12%, 0.6);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid hsla(0, 0%, 100%, 0.05);
+    /* Expanded state - when hovered, focused, has text, or has attachments */
+    .channelTextArea__74017:hover,
+    .channelTextArea__74017:focus-within,
+    .form_f75fb0:has(.attachWrapper__74017) .channelTextArea__74017,
+    .form_f75fb0:has(.hasValue__74017) .channelTextArea__74017 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        opacity: 1 !important;
     }
 
     /* minimal unread divider */
@@ -711,11 +556,8 @@ body {
 
 /* Smooth transitions for interactive elements - GPU accelerated */
 .visual-refresh {
-    /* Channel list items - GPU accelerated */
-    .content_e05d47,
-    .layout_e05d47,
-    .link_e05d47 {
-        transition: background-color 0.15s ease, transform 0.15s ease;
+    /* Channel list items - GPU accelerated (already styled above with hover effects) */
+    .scroller__629e4 li[class*="containerDefault"] {
         will-change: transform;
     }
     
@@ -2556,149 +2398,3 @@ body {
     }
 }
 
-
-
-body {
-    /* font options - Apple San Francisco */
-    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
-    --code-font: 'SF Mono', 'Monaco', 'Cascadia Code', 'Courier New', monospace;
-    font-weight: 400; /* normal text font weight. DOES NOT AFFECT BOLD TEXT */
-
-    /* sizes - Minimal floating panel design */
-    --gap: 16px; /* optimized spacing for minimal look */
-    --divider-thickness: 2px; /* thinner dividers for minimal aesthetic */
-    --border-thickness: 0px; /* no borders for cleaner floating look */
-
-    /* animation/transition options - smooth ease-out transitions */
-    --animations: on; /* off: disable animations/transitions, on: enable animations/transitions */
-    --list-item-transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
-    --dms-icon-svg-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
-    --border-hover-transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
-
-    /* top bar options - default Discord title bar */
-    --top-bar-height: 32px; /* standard height for better visibility */
-    --top-bar-button-position: off; /* off: default Discord position */
-    --top-bar-title-position: off; /* off: show default Discord title */
-    --subtle-top-bar-title: off; /* off: default styling */
-
-    /* window controls */
-    --custom-window-controls: on; /* off: default window controls, on: custom window controls */
-    --window-control-size: 14px; /* size of custom window controls */
-
-    /* dms button options - Material Design home icon with subtle outline */
-    --custom-dms-icon: custom; /* off: use default discord icon, hide: remove icon entirely, custom: use custom icon */
-    --dms-icon-svg-url: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M12 5.69l5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z'/%3E%3C/svg%3E"); /* Material Design icon from https://icones.js.org/collection/ic */
-    --dms-icon-svg-size: 85%; /* size of the svg (css mask-size property) */
-    --dms-icon-color-before: var(--icon-secondary); /* normal icon color */
-    --dms-icon-color-after: var(--white); /* icon color when button is hovered/selected */
-    --custom-dms-background: off; /* disabled for minimal look with subtle outline */
-    --dms-background-image-url: url(''); /* url of the background image */
-    --dms-background-image-size: cover; /* size of the background image (css background-size property) */
-    --dms-background-color: transparent; /* no background, only subtle border */
-
-    /* background image options */
-    --background-image: off; /* off: no background image, on: enable background image (must set url variable below) */
-    --background-image-url: url(''); /* url of the background image */
-
-    /* transparency/blur options */
-    /* NOTE: TO USE TRANSPARENCY/BLUR, YOU MUST HAVE TRANSPARENT BG COLORS. FOR EXAMPLE: --bg-4: hsla(220, 15%, 10%, 0.7); */
-    --transparency-tweaks: off; /* off: no changes, on: remove some elements for better transparency */
-    --remove-bg-layer: off; /* off: no changes, on: remove the base --bg-3 layer for use with window transparency (WILL OVERRIDE BACKGROUND IMAGE) */
-    --panel-blur: off; /* off: no changes, on: blur the background of panels */
-    --blur-amount: 12px; /* amount of blur */
-    --bg-floating: var(--bg-3); /* set this to a more opaque color if floating panels look too transparent. only applies if panel blur is on  */
-
-    /* chatbar options */
-    --custom-chatbar: aligned; /* off: default chatbar, aligned: chatbar aligned with the user panel, separated: chatbar separated from chat */
-    --chatbar-height: 47px; /* height of the chatbar (52px by default, 47px recommended for aligned, 56px recommended for separated) */
-    --chatbar-padding: 8px; /* padding of the chatbar. only applies in aligned mode. */
-
-    /* other options */
-    --small-user-panel: on; /* off: default user panel, on: smaller user panel like in old discord */
-}
-
-/* color options */
-:root {
-    --colors: on; /* off: discord default colors, on: sunset theme custom colors */
-
-    /* text colors - Warm tones to match orange theme */
-    --text-0: var(--bg-4); /* text on colored elements */
-    --text-1: hsl(30, 25%, 95%); /* other normally white text - warm white */
-    --text-2: hsl(28, 18%, 72%); /* headings and important text - warm */
-    --text-3: hsl(26, 15%, 62%); /* normal text - warm */
-    --text-4: hsl(25, 12%, 42%); /* icon buttons and channels - warm */
-    --text-5: hsl(24, 10%, 28%); /* muted channels/chats and timestamps - warm */
-
-    /* background and dark colors - Warm orange-tinted theme */
-    --bg-1: hsla(25, 18%, 20%, 1); /* dark buttons when clicked - warm tone */
-    --bg-2: hsla(25, 18%, 16%, 1); /* dark buttons - warm tone */
-    --bg-3: hsla(25, 18%, 13%, 1); /* spacing, secondary elements - warm tone */
-    --bg-4: hsla(25, 18%, 10%, 1); /* main background color - warm tone */
-    --hover: hsla(30, 25%, 45%, 0.12); /* channels and buttons when hovered - orange tint */
-    --active: hsla(30, 25%, 45%, 0.22); /* channels and buttons when clicked or selected - orange tint */
-    --active-2: hsla(30, 25%, 45%, 0.32); /* extra state for transparent buttons - orange tint */
-    --message-hover: hsla(30, 15%, 8%, 0.15); /* messages when hovered - warm tone */
-
-    /* accent colors - Orange theme */
-    --accent-1: var(--orange-1); /* links and other accent text */
-    --accent-2: var(--orange-2); /* small accent elements */
-    --accent-3: var(--orange-3); /* accent buttons */
-    --accent-4: var(--orange-4); /* accent buttons when hovered */
-    --accent-5: var(--orange-5); /* accent buttons when clicked */
-    --accent-new: var(--orange-2); /* stuff that's normally red like mute/deafen buttons */
-    --mention: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 90%) 40%, transparent); /* background of messages that mention you */
-    --mention-hover: linear-gradient(to right, color-mix(in hsl, var(--accent-2), transparent 95%) 40%, transparent); /* background of messages that mention you when hovered */
-    --reply: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 90%) 40%, transparent); /* background of messages that reply to you */
-    --reply-hover: linear-gradient(to right, color-mix(in hsl, var(--text-3), transparent 95%) 40%, transparent); /* background of messages that reply to you when hovered */
-
-    /* status indicator colors */
-    --online: var(--green-2); /* change to #40a258 for default */
-    --dnd: var(--red-2); /* change to #d83a41 for default */
-    --idle: var(--yellow-2); /* change to #cc954c for default */
-    --streaming: var(--purple-2); /* change to ##9147ff for default */
-    --offline: var(--text-4); /* change to #82838b for default offline color */
-
-    /* border colors */
-    --border-light: var(--hover); /* general light border color */
-    --border: var(--active); /* general normal border color */
-    --border-hover: var(--active); /* border color of panels when hovered */
-    --button-border: hsl(220, 0%, 100%, 0.1); /* neutral border color of buttons */
-
-    /* base colors */
-    --red-1: oklch(75% 0.12 0);
-    --red-2: oklch(70% 0.12 0);
-    --red-3: oklch(65% 0.12 0);
-    --red-4: oklch(60% 0.12 0);
-    --red-5: oklch(55% 0.12 0);
-
-    --green-1: oklch(75% 0.11 170);
-    --green-2: oklch(70% 0.11 170);
-    --green-3: oklch(65% 0.11 170);
-    --green-4: oklch(60% 0.11 170);
-    --green-5: oklch(55% 0.11 160);
-
-    --blue-1: oklch(75% 0.1 215);
-    --blue-2: oklch(70% 0.1 215);
-    --blue-3: oklch(65% 0.1 215);
-    --blue-4: oklch(60% 0.1 215);
-    --blue-5: oklch(55% 0.1 215);
-
-    --yellow-1: oklch(80% 0.11 90);
-    --yellow-2: oklch(75% 0.11 90);
-    --yellow-3: oklch(70% 0.11 90);
-    --yellow-4: oklch(65% 0.11 90);
-    --yellow-5: oklch(60% 0.11 90);
-
-    --purple-1: oklch(75% 0.11 310);
-    --purple-2: oklch(70% 0.11 310);
-    --purple-3: oklch(65% 0.11 310);
-    --purple-4: oklch(60% 0.11 310);
-    --purple-5: oklch(55% 0.11 310);
-
-    /* Orange color palette - optimized for performance */
-    --orange-1: oklch(78% 0.15 35);
-    --orange-2: oklch(73% 0.15 35);
-    --orange-3: oklch(68% 0.15 35);
-    --orange-4: oklch(63% 0.15 35);
-    --orange-5: oklch(58% 0.15 35);
-}

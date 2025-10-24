@@ -125,26 +125,39 @@ body {
     }
     
     /* Channel list items with smooth ease-out hover */
-    .content_e05d47 /* channel item */,
-    .layout_e05d47 /* channel layout */,
-    .link_e05d47 /* channel link */ {
-        border-radius: 6px;
+    .scroller__629e4 li[class*="containerDefault"] /* individual channel item */ {
+        border-radius: 8px !important;
+        margin: 2px 8px !important;
         transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
     }
     
-    .content_e05d47:hover,
-    .layout_e05d47:hover,
-    .link_e05d47:hover {
+    .scroller__629e4 li[class*="containerDefault"]:hover {
         background-color: var(--hover) !important;
-        transform: translateX(2px);
+        transform: translateX(2px) !important;
     }
     
-    .content_e05d47:active,
-    .layout_e05d47:active,
-    .link_e05d47:active {
+    .scroller__629e4 li[class*="containerDefault"]:active {
         background-color: var(--active) !important;
-        transform: translateX(0);
+        transform: translateX(0) !important;
+    }
+    
+    /* Remove double borders/shadows and disable hover on inner elements */
+    .scroller__629e4 li[class*="containerDefault"] [class*="content_"],
+    .scroller__629e4 li[class*="containerDefault"] [class*="layout_"],
+    .scroller__629e4 li[class*="containerDefault"] [class*="link_"] {
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: transparent !important;
+        transition: none !important;
+    }
+    
+    .scroller__629e4 li[class*="containerDefault"] [class*="content_"]:hover,
+    .scroller__629e4 li[class*="containerDefault"] [class*="layout_"]:hover,
+    .scroller__629e4 li[class*="containerDefault"] [class*="link_"]:hover {
+        background: transparent !important;
+        transform: none !important;
     }
 
     /* fix discord's idiotic server banners */
@@ -399,195 +412,37 @@ body {
         background: none;
     }
 
-    /* ================================
-       LIQUID GLASS CHAT BAR - OPTIMIZED
-       iOS 26 inspired design
-       ================================ */
-    
-    /* Container setup */
-    .channelTextArea_f75fb0 {
-        margin: 0 16px 20px !important;
-        padding: 0 !important;
-    }
-    
-    /* Main liquid glass wrapper */
-    .channelTextArea__74017 {
-        position: relative;
-        border-radius: 24px;
-        min-height: 48px;
-        padding: 0;
-        overflow: hidden;
-        
-        /* Liquid glass material */
-        background: linear-gradient(135deg, 
-            hsla(0, 0%, 20%, 0.6), 
-            hsla(0, 0%, 15%, 0.5) 50%, 
-            hsla(0, 0%, 18%, 0.55)
-        );
-        backdrop-filter: blur(40px) saturate(180%);
-        -webkit-backdrop-filter: blur(40px) saturate(180%);
-        
-        /* Subtle shadows and highlights */
-        box-shadow: 
-            inset 0 1px 0 hsla(0, 0%, 100%, 0.08),
-            inset 0 -1px 0 hsla(0, 0%, 0%, 0.15),
-            0 2px 12px hsla(0, 0%, 0%, 0.2),
-            0 0 0 1px hsla(0, 0%, 100%, 0.04);
-        
-        /* Smooth transitions - only on interaction */
-        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    /* Gradient border using pseudo-element */
-    .channelTextArea__74017::before {
-        content: '';
-        position: absolute;
-        inset: -1px;
-        border-radius: 24px;
-        padding: 1px;
-        background: linear-gradient(135deg,
-            hsla(0, 0%, 100%, 0.1),
-            hsla(0, 0%, 100%, 0.03),
-            hsla(0, 0%, 100%, 0.06)
-        );
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, 
-                      linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
-        z-index: 0;
-    }
-    
-    /* Focus state - enhanced glow */
-    .channelTextArea__74017:focus-within {
-        background: linear-gradient(135deg,
-            hsla(30, 60%, 50%, 0.12),
-            hsla(0, 0%, 15%, 0.6) 50%,
-            hsla(30, 60%, 50%, 0.08)
-        );
-        box-shadow: 
-            inset 0 1px 0 hsla(30, 60%, 50%, 0.15),
-            inset 0 -1px 0 hsla(0, 0%, 0%, 0.25),
-            0 4px 20px hsla(30, 60%, 50%, 0.15),
-            0 0 0 1px hsla(30, 60%, 50%, 0.25),
-            0 0 24px hsla(30, 60%, 50%, 0.06);
-        transform: translateY(-1px);
-    }
-    
-    .channelTextArea__74017:focus-within::before {
-        background: linear-gradient(135deg,
-            hsla(30, 60%, 50%, 0.25),
-            hsla(30, 60%, 50%, 0.08),
-            hsla(30, 60%, 50%, 0.18)
-        );
-    }
-    
-    /* Remove default backgrounds */
-    .scrollableContainer__74017,
-    .themedBackground__74017 {
+    /* Remove background behind chatbox */
+    .channelTextArea_f75fb0,
+    .channelBottomBarArea_f75fb0,
+    .form_f75fb0,
+    .formWithLoadedChatInput_f75fb0 {
         background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
     }
     
-    /* Inner container - flexbox layout */
-    .inner__74017 {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        min-height: 48px;
-        padding: 0 16px;
-        background: transparent;
+    /* Simple chat bar with expand and fade transition */
+    .channelTextArea__74017 {
+        width: 40% !important;
+        margin-left: 30% !important;
+        margin-right: 30% !important;
+        opacity: 0.7 !important;
+        border-radius: 14px !important;
+        will-change: width, margin-left, margin-right, opacity !important;
+        transition: width 0.2s ease-out,
+                    margin-left 0.2s ease-out,
+                    margin-right 0.2s ease-out,
+                    opacity 0.15s ease-out !important;
     }
     
-    /* Attach button */
-    .attachButton__74017 {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 8px;
-    }
-    
-    /* Text input area */
-    .sansAttachButton__74017 {
-        display: flex;
-        align-items: center;
-        flex: 1;
-        padding: 0;
-        margin: 0;
-        background: transparent;
-    }
-    
-    .textArea__74017 {
-        flex: 1;
-        padding: 0;
-        margin: 0;
-        background: transparent;
-    }
-    
-    .slateTextArea_ec4baf {
-        padding: 0;
-        margin: 0;
-        background: transparent;
-    }
-    
-    /* Placeholder styling */
-    .slateTextArea_ec4baf [data-slate-placeholder='true'] {
-        color: hsla(0, 0%, 100%, 0.4);
-        font-weight: 400;
-    }
-    
-    /* Action buttons container */
-    .buttons__74017 {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 0;
-    }
-    
-    .buttonContainer__74017 {
-        display: flex;
-        align-items: center;
-    }
-    
-    /* Liquid glass buttons */
-    .buttonContainer__74017 button {
-        width: 36px;
-        height: 36px;
-        border-radius: 12px;
-        background: hsla(0, 0%, 100%, 0.05);
-        border: 1px solid hsla(0, 0%, 100%, 0.1);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                    background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-                    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .buttonContainer__74017 button:hover {
-        background: hsla(30, 60%, 50%, 0.2);
-        border-color: hsla(30, 60%, 50%, 0.3);
-        transform: scale(1.08) translateY(-1px);
-        box-shadow: 
-            0 4px 12px hsla(30, 60%, 50%, 0.2),
-            inset 0 1px 0 hsla(0, 0%, 100%, 0.15);
-    }
-    
-    .buttonContainer__74017 button:active {
-        transform: scale(0.96);
-        background: hsla(30, 60%, 50%, 0.15);
-    }
-    
-    /* Attachment preview bar */
-    .attachWrapper__74017 {
-        border-radius: 20px 20px 0 0;
-        background: hsla(0, 0%, 12%, 0.6);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid hsla(0, 0%, 100%, 0.05);
+    /* Expanded state - when hovered, focused, has text, or has attachments */
+    .channelTextArea__74017:hover,
+    .channelTextArea__74017:focus-within,
+    .form_f75fb0:has(.attachWrapper__74017) .channelTextArea__74017,
+    .form_f75fb0:has(.hasValue__74017) .channelTextArea__74017 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        opacity: 1 !important;
     }
 
     /* minimal unread divider */
@@ -700,11 +555,8 @@ body {
 
 /* Smooth transitions for interactive elements - GPU accelerated */
 .visual-refresh {
-    /* Channel list items - GPU accelerated */
-    .content_e05d47,
-    .layout_e05d47,
-    .link_e05d47 {
-        transition: background-color 0.15s ease, transform 0.15s ease;
+    /* Channel list items - GPU accelerated (already styled above with hover effects) */
+    .scroller__629e4 li[class*="containerDefault"] {
         will-change: transform;
     }
     
