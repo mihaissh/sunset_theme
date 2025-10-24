@@ -30,3 +30,48 @@ body {
         margin-left: -4px;
     }
 }
+
+/* Smooth page transition fade effect */
+@container body style(--animations: on) {
+    /* Target the main app container for consistent fades */
+    .app_c48ade,
+    .base_f75fb0 {
+        /* Empty for now - will be used for transitions */
+    }
+    
+    /* Fade effect for major view changes */
+    .chat_f75fb0,
+    .container__133bf,
+    .container_f391e3,
+    .homeWrapper__0920e {
+        opacity: 1;
+        animation: viewFadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    /* Settings pages fade */
+    .contentRegion__63a38 > div,
+    .sidebarRegion__63a38 > nav {
+        opacity: 1;
+        animation: viewFadeIn 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    @keyframes viewFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Smooth scrolling only for safe containers (not chat messages) */
+.scroller__629e4, /* channel list */
+.scroller_ef3116, /* server list */
+.members_c8ffbb, /* member list */
+.sidebarRegion__63a38, /* settings sidebar */
+.contentRegion__63a38 /* settings content */ {
+    scroll-behavior: smooth !important;
+}

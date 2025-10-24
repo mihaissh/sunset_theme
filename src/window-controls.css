@@ -9,7 +9,7 @@ body {
 }
 
 @container body style(--custom-window-controls: on) {
-    /* Fluent window control icons - from https://icones.js.org/collection/fluent */
+    /* Stash window control icons - from https://icones.js.org/collection/stash */
     .winButtons_c38106 {
         gap: 4px;
         padding-right: calc(var(--gap) + 4px);
@@ -48,21 +48,21 @@ body {
     .winButton_c38106:active::after {
         transform: scale(0.9);
     }
-    /* Fluent Dismiss icon (X) */
+    /* Stash Close icon (X) */
     .winButtonClose_c38106::after {
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='m4.21 4.387l.083-.094a1 1 0 0 1 1.32-.083l.094.083L12 10.585l6.293-6.292a1 1 0 1 1 1.414 1.414L13.415 12l6.292 6.293a1 1 0 0 1 .083 1.32l-.083.094a1 1 0 0 1-1.32.083l-.094-.083L12 13.415l-6.293 6.292a1 1 0 0 1-1.414-1.414L10.585 12L4.293 5.707a1 1 0 0 1-.083-1.32z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z'/%3E%3C/svg%3E");
         background-color: var(--text-3) !important;
     }
     .winButtonClose_c38106:hover::after {
         background-color: var(--red-2) !important;
     }
-    /* Fluent Subtract icon (minimize) */
+    /* Stash Minimize icon (horizontal line) */
     .winButtonMinMax_c38106:nth-child(1)::after {
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M4 12a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M19 13H5v-2h14z'/%3E%3C/svg%3E");
     }
-    /* Fluent Maximize icon */
+    /* Stash Crop square icon (maximize) */
     .winButtonMinMax_c38106:nth-child(2)::after {
-        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M3 5.25A2.25 2.25 0 0 1 5.25 3h13.5A2.25 2.25 0 0 1 21 5.25v13.5A2.25 2.25 0 0 1 18.75 21H5.25A2.25 2.25 0 0 1 3 18.75zM5.25 4.5a.75.75 0 0 0-.75.75v13.5c0 .414.336.75.75.75h13.5a.75.75 0 0 0 .75-.75V5.25a.75.75 0 0 0-.75-.75z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='currentColor' d='M18 4H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 14H6V6h12z'/%3E%3C/svg%3E");
     }
 }
 
