@@ -2,7 +2,7 @@
 
 **Date**: October 24, 2025  
 **Version**: 1.0.0  
-**Author**: Mihai Straculencu  
+**Author**: Mihai  
 **Target**: < 2 second Discord load time
 
 ## ✅ Optimizations Completed

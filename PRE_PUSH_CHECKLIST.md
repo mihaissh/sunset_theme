@@ -1,7 +1,7 @@
 # ✅ Pre-Push Checklist - Sunset Theme v1.0.0
 
 **Date**: October 24, 2025  
-**Author**: Mihai Straculencu  
+**Author**: Mihai  
 **Repository**: https://github.com/MihaiStraculencu/sunset_theme  
 **Branch**: master
 
@@ -100,7 +100,7 @@
 
 ### Theme Metadata
 - [x] Name: `Sunset Theme`
-- [x] Author: `Mihai Straculencu`
+- [x] Author: `Mihai`
 - [x] Version: `1.0.0`
 - [x] Description: "A warm, orange-themed Discord theme with floating panels, liquid glass effects, and optimized performance."
 
@@ -229,7 +229,7 @@ Sunset Theme v1.0.0 is:
 
 ---
 
-**Completed by**: Mihai Straculencu  
+**Completed by**: Mihai  
 **Date**: October 24, 2025  
 **Repository**: https://github.com/MihaiStraculencu/sunset_theme  
 **Status**: ✅ READY FOR PRODUCTION

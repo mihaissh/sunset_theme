@@ -6,7 +6,7 @@
 		"dev": "node scripts/dev.js",
 		"build": "node scripts/build.js"
 	},
-	"author": "Mihai Straculencu",
+	"author": "Mihai",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
