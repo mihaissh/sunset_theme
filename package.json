@@ -1,0 +1,19 @@
+{
+	"name": "sunset-theme",
+	"version": "1.0.0",
+	"description": "A warm, orange-themed Discord theme with floating panels and optimized performance",
+	"scripts": {
+		"dev": "node scripts/dev.js",
+		"build": "node scripts/build.js"
+	},
+	"author": "Mihai Straculencu",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/MihaiStraculencu/sunset_theme.git"
+	},
+	"devDependencies": {
+		"chokidar": "^3.6.0",
+		"dotenv": "^16.4.5"
+	}
+}

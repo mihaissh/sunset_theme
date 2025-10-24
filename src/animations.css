@@ -1,0 +1,32 @@
+body {
+    /* Smooth ease-out transitions for better feel */
+    --list-item-transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
+    --dms-icon-svg-transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
+    --button-transition: 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
+    --panel-transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* ease-out-quad */
+}
+
+@property --animations {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on; /* animations enabled with smooth ease-out */
+}
+
+/* Remove default focus outlines for cleaner look */
+.visual-refresh {
+    button:focus,
+    input:focus,
+    textarea:focus,
+    [role="button"]:focus,
+    [tabindex]:focus {
+        outline: none !important;
+    }
+
+    /* Minimal channel dot - static */
+    .unread__2ea32 {
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        margin-left: -4px;
+    }
+}

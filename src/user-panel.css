@@ -1,0 +1,18 @@
+@property --small-user-panel {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: off;
+}
+
+@container body style(--small-user-panel: on) {
+    .visual-refresh {
+        .panels_c48ade /* user panel */ {
+            right: 0;
+            left: unset;
+            width: calc(var(--custom-guild-sidebar-width) - var(--custom-guild-list-width));
+        }
+        .guilds_c48ade /* server list */ {
+            margin-bottom: 0;
+        }
+    }
+}

@@ -1,0 +1,69 @@
+/* ================================
+   FRIENDS LIST - Clean & Simple
+   ================================ */
+
+/* Friends list scroller */
+.peopleColumn__133bf .scroller_c880e8,
+.peopleColumn__133bf [class*="listScroller"],
+.peopleColumn__133bf [class*="scroller"] {
+    padding: 8px;
+}
+
+/* Friend list items */
+.peopleColumn__133bf [class*="peopleListItem"],
+.peopleColumn__133bf [class*="listRow"],
+.peopleColumn__133bf [role="listitem"] {
+    border-radius: 8px !important;
+    margin: 2px 0 !important;
+    padding: 8px 12px !important;
+    transition: background-color 0.15s ease, transform 0.15s ease !important;
+    background-color: transparent !important;
+}
+
+/* Hover state */
+.peopleColumn__133bf [class*="peopleListItem"]:hover,
+.peopleColumn__133bf [class*="listRow"]:hover,
+.peopleColumn__133bf [role="listitem"]:hover {
+    background-color: var(--hover) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* Active/pressed state */
+.peopleColumn__133bf [class*="peopleListItem"]:active,
+.peopleColumn__133bf [class*="listRow"]:active,
+.peopleColumn__133bf [role="listitem"]:active {
+    transform: translateY(0) !important;
+    background-color: var(--active) !important;
+}
+
+/* Selected friend */
+.peopleColumn__133bf [class*="peopleListItem"][class*="active"],
+.peopleColumn__133bf [class*="listRow"][class*="selected"],
+.peopleColumn__133bf [aria-selected="true"] {
+    background-color: var(--active) !important;
+}
+
+/* Friend action buttons */
+.peopleColumn__133bf [class*="actions"] button {
+    transition: background-color 0.15s ease, transform 0.15s ease !important;
+}
+
+.peopleColumn__133bf [class*="actions"] button:hover {
+    background-color: var(--bg-2) !important;
+    transform: scale(1.05) !important;
+}
+
+.peopleColumn__133bf [class*="actions"] button:active {
+    transform: scale(0.95) !important;
+}
+
+/* Now playing column */
+.nowPlayingColumn__133bf [class*="itemCard"] {
+    border-radius: 8px !important;
+    transition: background-color 0.15s ease, transform 0.15s ease !important;
+}
+
+.nowPlayingColumn__133bf [class*="itemCard"]:hover {
+    background-color: var(--hover) !important;
+    transform: translateY(-1px) !important;
+}

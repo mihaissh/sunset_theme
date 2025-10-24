@@ -1,0 +1,403 @@
+/* ================================
+   TOP BAR - Complete Refactor
+   Clean, minimal, performant
+   ================================ */
+
+/* ================================
+   BASE CONFIGURATION
+   ================================ */
+
+body {
+    --top-bar-height: 32px;
+    --custom-app-top-bar-height: var(--top-bar-height);
+}
+
+/* ================================
+   TOP BAR CONTAINER
+   ================================ */
+
+.visual-refresh .bar_c38106,
+.visual-refresh .systemBar_c38106 {
+    height: var(--top-bar-height);
+    background: transparent;
+    padding: 2px 0;
+}
+
+/* ================================
+   TOOLBAR BUTTONS
+   ================================ */
+
+.visual-refresh .toolbar__9293f {
+    gap: 6px;
+    padding: 0 8px 0 12px;
+    height: var(--custom-channel-header-height);
+    transition: background-color var(--button-transition);
+}
+
+/* Icon wrapper - consistent sizing */
+.visual-refresh .iconWrapper__9293f {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: 
+        background-color var(--button-transition),
+        transform var(--button-transition);
+}
+
+.visual-refresh .iconWrapper__9293f:hover {
+    background-color: var(--hover);
+    transform: scale(1.05);
+}
+
+.visual-refresh .iconWrapper__9293f:active {
+    transform: scale(0.95);
+    background-color: var(--active);
+}
+
+/* Icon sizing */
+.visual-refresh .iconWrapper__9293f svg,
+.visual-refresh .iconWrapper__9293f .icon__9293f {
+    width: 20px;
+    height: 20px;
+}
+
+/* ================================
+   SEARCH BAR
+   ================================ */
+
+.visual-refresh .searchBar_de2edf {
+    height: 32px;
+    border-radius: 8px;
+    background-color: var(--bg-2);
+    transition: 
+        background-color var(--button-transition),
+        box-shadow var(--button-transition);
+}
+
+.visual-refresh .searchBar_de2edf:focus-within {
+    background-color: var(--bg-1);
+    box-shadow: 0 0 0 2px hsla(30, 60%, 50%, 0.2);
+}
+
+/* ================================
+   CHANNEL TITLE AREA
+   ================================ */
+
+.visual-refresh .subtitleContainer_f75fb0 {
+    background: transparent;
+    padding: 0 var(--gap);
+}
+
+.visual-refresh .title_f75fb0 {
+    background: transparent;
+    box-shadow: none;
+}
+
+/* ================================
+   INBOX BUTTON
+   ================================ */
+
+.visual-refresh .recentsIcon_c99c29 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-refresh .recentsIcon_c99c29 .button__85643 {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 0;
+    border-radius: 8px;
+    transition: 
+        background-color var(--button-transition),
+        transform var(--button-transition);
+}
+
+.visual-refresh .recentsIcon_c99c29 .button__85643:hover {
+    background-color: var(--hover);
+    transform: scale(1.05);
+}
+
+.visual-refresh .recentsIcon_c99c29 .button__85643:active {
+    transform: scale(0.95);
+}
+
+.visual-refresh .recentsIcon_c99c29 .svg__2338f {
+    width: 20px;
+    height: 20px;
+    transition: color var(--button-transition);
+}
+
+/* ================================
+   TRAILING BUTTONS (settings, etc)
+   ================================ */
+
+.visual-refresh .trailing_c38106 {
+    transition: background-color var(--button-transition);
+}
+
+.visual-refresh .trailing_c38106 * {
+    transition: 
+        background-color var(--button-transition),
+        color var(--button-transition),
+        transform var(--button-transition);
+}
+
+/* ================================
+   REMOVE SHADOWS FOR PERFORMANCE
+   ================================ */
+
+.visual-refresh .children__9293f:after,
+.visual-refresh .toolbar__9293f:after {
+    display: none;
+}
+
+/* ================================
+   POSITIONING CONFIGURATIONS
+   ================================ */
+
+@property --top-bar-button-position {
+    syntax: 'off | hide | serverlist | titlebar';
+    inherits: false;
+    initial-value: titlebar;
+}
+
+@property --top-bar-title-position {
+    syntax: 'off | hide | left';
+    inherits: false;
+    initial-value: off;
+}
+
+@property --subtle-top-bar-title {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: off;
+}
+
+/* ================================
+   BUTTON POSITION: HIDE
+   ================================ */
+
+@container body style(--top-bar-button-position: hide) {
+    .visual-refresh {
+        .trailing_c38106 > a[href="https://support.discord.com"],
+        .recentsIcon_c99c29,
+        .winButtons_c38106::before {
+            display: none;
+        }
+    }
+}
+
+/* ================================
+   BUTTON POSITION: SERVERLIST
+   ================================ */
+
+@container body style(--top-bar-button-position: serverlist) {
+    .visual-refresh {
+        .trailing_c38106 > a[href="https://support.discord.com"],
+        .winButtons_c38106::before {
+            display: none;
+        }
+
+        .stack_dbd263:not([id='guild-list-unread-dms']) {
+            overflow: hidden scroll;
+            scrollbar-width: none;
+        }
+
+        .tutorialContainer__1f388 {
+            margin-bottom: 48px;
+        }
+
+        .recentsIcon_c99c29 {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            top: calc(var(--custom-app-top-bar-height) + 1px + var(--custom-guild-list-padding) + 48px);
+            left: calc(var(--gap) + 1px + var(--custom-guild-list-padding));
+        }
+
+        .recentsIcon_c99c29 .button__85643 {
+            width: 100%;
+            height: 100%;
+            background-color: var(--background-surface-higher);
+            border-radius: var(--radius-md);
+        }
+
+        .recentsIcon_c99c29 .button__85643:hover {
+            background-color: var(--bg-brand);
+        }
+
+        .recentsIcon_c99c29 .button__85643:hover .icon__9293f {
+            color: var(--white);
+        }
+
+        .recentMentionsPopout__95796 {
+            transform: translateX(100%);
+        }
+
+        .layer__960e4.baseLayer__960e4 {
+            transform: none !important;
+        }
+
+        .layers__960e4 > .layer__960e4.animating__960e4 {
+            will-change: opacity;
+        }
+
+        .recentsIcon_c99c29 .iconBadge__9293f {
+            --custom-icon-offset: 8px;
+            width: 10px;
+            height: 10px;
+            transition: background var(--button-transition);
+        }
+
+        .recentsIcon_c99c29:hover .iconBadge__9293f {
+            background: var(--white);
+        }
+    }
+}
+
+/* ================================
+   BUTTON POSITION: TITLEBAR
+   ================================ */
+
+@container body style(--top-bar-button-position: titlebar) {
+    #app-mount {
+        --custom-channel-header-height: calc(var(--guildbar-avatar-size) + var(--space-xs) + var(--border-thickness) * 2);
+        --top-bar-right-margin: calc(32px + var(--space-xs));
+    }
+
+    .visual-refresh {
+        .title_c38106,
+        .trailing_c38106 > a[href="https://support.discord.com"] {
+            display: none;
+        }
+
+        .trailing_c38106 {
+            position: absolute;
+            top: calc(var(--top-bar-height) + 8px + var(--border-thickness));
+            right: calc(var(--gap) + var(--border-thickness));
+            gap: var(--space-xs);
+            z-index: 1000;
+            padding-right: var(--space-xs);
+        }
+
+        .systemBar_c38106 .trailing_c38106 {
+            top: var(--space-xs);
+        }
+
+        .winButtons_c38106 {
+            padding: 0;
+        }
+
+        .winButton_c38106 {
+            height: calc(var(--window-control-size) * 2);
+        }
+
+        .winButtons_c38106::before {
+            height: 16px;
+            width: var(--space-xs);
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .toolbar__9293f {
+            padding-right: var(--top-bar-right-margin);
+        }
+
+        .headerBar__8a7fc {
+            padding-right: calc(var(--top-bar-right-margin) + var(--space-sm));
+        }
+
+        .searchFloating__1ac1c {
+            right: calc(var(--top-bar-right-margin) + var(--space-sm));
+        }
+
+        .balanceWidgetMenu__80679 {
+            margin-right: var(--top-bar-right-margin);
+        }
+
+        .inviteToolbar__133bf {
+            padding-right: 0;
+        }
+
+        .chat_f75fb0 > .layerContainer__59d0d {
+            z-index: 999;
+        }
+
+        .subtitleContainer_f75fb0 {
+            height: var(--custom-channel-header-height);
+        }
+
+        .title_f75fb0.container__9293f {
+            height: auto;
+            min-height: 0;
+        }
+    }
+
+    .base_c48ade:has(.notice__6e2b9) > .bar_c38106 > .trailing_c38106 {
+        top: calc(var(--top-bar-height) + 8px + 40px + var(--gap) + var(--border-thickness));
+    }
+
+    .base_c48ade:has(.winButtons_c38106) {
+        --top-bar-right-margin: calc(32px + 3 * var(--space-xs) + 6 * var(--window-control-size));
+    }
+
+    .base_c48ade:has(.trailing_c38106 > .button__85643) {
+        --top-bar-right-margin: calc(32px * 2 + 2 * var(--space-xs));
+    }
+
+    .base_c48ade:has(.winButtons_c38106):has(.trailing_c38106 > .button__85643) {
+        --top-bar-right-margin: calc(32px * 2 + 4 * var(--space-xs) + 6 * var(--window-control-size));
+    }
+}
+
+/* ================================
+   TITLE POSITION VARIANTS
+   ================================ */
+
+@container body style(--top-bar-title-position: hide) {
+    .visual-refresh .title__85643 {
+        display: none;
+    }
+}
+
+@container body style(--top-bar-title-position: left) {
+    .visual-refresh {
+        .title_c38106 {
+            padding-left: var(--gap);
+            justify-content: flex-start;
+        }
+        .title__85643 {
+            gap: 4px;
+        }
+    }
+}
+
+@container body style(--subtle-top-bar-title: on) {
+    .visual-refresh {
+        .title__85643 .icon_f34534,
+        .title__85643 > svg {
+            display: none;
+        }
+        .title__85643 .text-sm\/medium_cf4812 {
+            line-height: 90%;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+    }
+}
+
+/* ================================
+   OSX SPECIFIC
+   ================================ */
+
+.platform-osx.visual-refresh .wrapper_ef3116 {
+    margin-top: max(0px, calc(36px - var(--top-bar-height)));
+}
