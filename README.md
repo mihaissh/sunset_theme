@@ -51,6 +51,3 @@ Edit files in `/src` - changes auto-compile to your themes folder.
 npm run build
 ```
 
----
-
-Made by **Mihai**
