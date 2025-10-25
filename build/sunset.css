@@ -585,31 +585,14 @@ body {
         margin-top: 0 !important;
     }
     
-    /* Simple chat bar with expand and fade transition */
+    /* Simple chat bar - fixed width centered */
     .channelTextArea__74017 {
-        width: 40% !important;
-        margin-left: 30% !important;
-        margin-right: 30% !important;
+        width: 70% !important;
+        margin-left: 15% !important;
+        margin-right: 15% !important;
         margin-top: 0 !important;
-        opacity: 0.7 !important;
         border-radius: 14px !important;
         padding-top: 0 !important;
-        will-change: width, margin-left, margin-right, opacity !important;
-        transition: width 0.2s ease-out,
-                    margin-left 0.2s ease-out,
-                    margin-right 0.2s ease-out,
-                    opacity 0.15s ease-out !important;
-    }
-    
-    /* Expanded state - when hovered, focused, has text, or has attachments */
-    .channelTextArea__74017:hover,
-    .channelTextArea__74017:focus-within,
-    .form_f75fb0:has(.attachWrapper__74017) .channelTextArea__74017,
-    .form_f75fb0:has(.hasValue__74017) .channelTextArea__74017 {
-        width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        opacity: 1 !important;
     }
     
     /* Move typing indicator above chatbox and style as pill */
@@ -617,27 +600,12 @@ body {
         position: relative !important;
         order: -1 !important;
         margin-bottom: 2px !important;
-        width: 40% !important;
-        margin-left: 30% !important;
-        margin-right: 30% !important;
+        width: 70% !important;
+        margin-left: 15% !important;
+        margin-right: 15% !important;
         padding: 8px 16px !important;
         border-radius: 20px !important;
         background-color: var(--background-base-lower) !important;
-        transition: width 0.2s ease-out,
-                    margin-left 0.2s ease-out,
-                    margin-right 0.2s ease-out !important;
-    }
-    
-    /* Expand typing indicator when chatbox is expanded */
-    .channelTextArea__74017:hover ~ .typing_b88801,
-    .channelTextArea__74017:focus-within ~ .typing_b88801,
-    .form_f75fb0:has(.attachWrapper__74017) .typing_b88801,
-    .form_f75fb0:has(.hasValue__74017) .typing_b88801,
-    .form_f75fb0:has(.channelTextArea__74017:hover) .typing_b88801,
-    .form_f75fb0:has(.channelTextArea__74017:focus-within) .typing_b88801 {
-        width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
     }
     
     .form_f75fb0 {
@@ -645,6 +613,28 @@ body {
         flex-direction: column !important;
         padding-top: 0 !important;
         margin-top: 0 !important;
+    }
+
+    /* ============================================
+       PROFILE POPOUT - FULL WIDTH CHATBOX
+       ============================================ */
+    
+    /* Make chatbox full width in profile popout */
+    .outer_c0bea0 .channelTextArea__74017,
+    .userPanelInner__4da4c .channelTextArea__74017,
+    [class*="userPopout"] .channelTextArea__74017 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Full width typing indicator in profile popout */
+    .outer_c0bea0 .typing_b88801,
+    .userPanelInner__4da4c .typing_b88801,
+    [class*="userPopout"] .typing_b88801 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     /* minimal unread divider */
@@ -2084,73 +2074,203 @@ body {
 
 /* friends-list.css */
 /* ================================
-   FRIENDS LIST - Clean & Simple
+   FRIENDS LIST - Modern Card Design
    ================================ */
+
+/* Search bar - Compact and performant */
+.peopleColumn__133bf [class*="searchBar"] {
+    padding: 4px !important;
+    margin: 0 0 12px 0 !important;
+    max-width: 220px !important;
+}
+
+.peopleColumn__133bf [class*="searchBar"] > div,
+.peopleColumn__133bf [class*="searchBar"] [class*="inner"] {
+    border-radius: 6px !important;
+    padding: 8px 12px !important;
+    height: 32px !important;
+}
+
+.peopleColumn__133bf input[type="text"],
+.peopleColumn__133bf [class*="search"] input {
+    font-size: 13px !important;
+}
+
+/* Remove focus outlines */
+.peopleColumn__133bf [class*="searchBar"] *,
+.peopleColumn__133bf input[type="text"] {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
 
 /* Friends list scroller */
 .peopleColumn__133bf .scroller_c880e8,
 .peopleColumn__133bf [class*="listScroller"],
 .peopleColumn__133bf [class*="scroller"] {
-    padding: 8px;
+    padding: 20px 16px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
 
-/* Friend list items */
+/* Friend list items - Modern card style */
 .peopleColumn__133bf [class*="peopleListItem"],
 .peopleColumn__133bf [class*="listRow"],
 .peopleColumn__133bf [role="listitem"] {
-    border-radius: 8px !important;
-    margin: 2px 0 !important;
-    padding: 8px 12px !important;
-    transition: background-color 0.15s ease, transform 0.15s ease !important;
-    background-color: transparent !important;
+    border-radius: 10px !important;
+    margin: 8px 0 !important;
+    padding: 12px 16px !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(255, 255, 255, 0.01) 100%
+    ) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
 }
 
-/* Hover state */
+/* Eye-catching hover state - Sunset theme colors */
 .peopleColumn__133bf [class*="peopleListItem"]:hover,
 .peopleColumn__133bf [class*="listRow"]:hover,
 .peopleColumn__133bf [role="listitem"]:hover {
-    background-color: var(--hover) !important;
-    transform: translateY(-1px) !important;
+    background: linear-gradient(
+        135deg,
+        hsla(30, 60%, 50%, 0.18) 0%,
+        hsla(35, 70%, 55%, 0.15) 50%,
+        hsla(30, 60%, 50%, 0.18) 100%
+    ) !important;
+    border-color: hsla(30, 60%, 50%, 0.45) !important;
+    transform: translateX(4px) !important;
+    box-shadow: 
+        -3px 0 0 0 hsla(30, 60%, 50%, 0.6),
+        0 4px 16px hsla(30, 60%, 50%, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
 }
 
-/* Active/pressed state */
+/* Active state */
 .peopleColumn__133bf [class*="peopleListItem"]:active,
 .peopleColumn__133bf [class*="listRow"]:active,
 .peopleColumn__133bf [role="listitem"]:active {
-    transform: translateY(0) !important;
-    background-color: var(--active) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
 }
 
 /* Selected friend */
 .peopleColumn__133bf [class*="peopleListItem"][class*="active"],
 .peopleColumn__133bf [class*="listRow"][class*="selected"],
 .peopleColumn__133bf [aria-selected="true"] {
-    background-color: var(--active) !important;
+    background-color: rgba(114, 137, 218, 0.15) !important;
+    border-color: rgba(114, 137, 218, 0.3) !important;
 }
 
 /* Friend action buttons */
 .peopleColumn__133bf [class*="actions"] button {
-    transition: background-color 0.15s ease, transform 0.15s ease !important;
+    transition: background-color 0.15s ease !important;
+    border-radius: 4px !important;
 }
 
 .peopleColumn__133bf [class*="actions"] button:hover {
-    background-color: var(--bg-2) !important;
-    transform: scale(1.05) !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 .peopleColumn__133bf [class*="actions"] button:active {
-    transform: scale(0.95) !important;
+    background-color: rgba(255, 255, 255, 0.15) !important;
 }
 
 /* Now playing column */
 .nowPlayingColumn__133bf [class*="itemCard"] {
     border-radius: 8px !important;
-    transition: background-color 0.15s ease, transform 0.15s ease !important;
+    transition: background-color 0.15s ease !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
 .nowPlayingColumn__133bf [class*="itemCard"]:hover {
-    background-color: var(--hover) !important;
-    transform: translateY(-1px) !important;
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ================================
+   ADAPTIVE TAB SYSTEM - Minimal
+   ================================ */
+
+/* Tab items - Adaptive sizing */
+.container__11d72 [class*="item"],
+.topPill__14155 [class*="item"],
+.container__11d72 [role="tab"],
+.topPill__14155 [role="tab"] {
+    padding: 6px 12px !important;
+    margin: 0 4px !important;
+    border-radius: 6px !important;
+    transition: background-color 0.15s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    min-width: fit-content !important;
+    width: auto !important;
+}
+
+/* Tab hover */
+.container__11d72 [class*="item"]:not([class*="selected"]):hover,
+.topPill__14155 [class*="item"]:not([class*="selected"]):hover,
+.container__11d72 [role="tab"]:not([aria-selected="true"]):hover,
+.topPill__14155 [role="tab"]:not([aria-selected="true"]):hover {
+    background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ACTIVE TAB - Content adaptive */
+.container__11d72 [class*="item"][class*="selected"],
+.topPill__14155 [class*="item"][class*="selected"],
+.container__11d72 [role="tab"][aria-selected="true"],
+.topPill__14155 [role="tab"][aria-selected="true"] {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+    border: 1px solid rgba(114, 137, 218, 0.4) !important;
+    min-width: fit-content !important;
+    width: auto !important;
+    padding: 6px 14px !important;
+    font-weight: 600 !important;
+}
+
+/* Small content tabs */
+.container__11d72 [class*="item"][class*="selected"]:not(:has([class*="badge"])):not(:has([class*="icon"])),
+.topPill__14155 [class*="item"][class*="selected"]:not(:has([class*="badge"])):not(:has([class*="icon"])) {
+    min-width: 50px !important;
+    padding: 6px 12px !important;
+}
+
+/* Large content tabs with badges */
+.container__11d72 [class*="item"][class*="selected"]:has([class*="badge"]),
+.topPill__14155 [class*="item"][class*="selected"]:has([class*="badge"]) {
+    padding: 6px 16px !important;
+}
+
+/* Badge styling */
+.container__11d72 [class*="item"][class*="selected"] [class*="badge"],
+.topPill__14155 [class*="item"][class*="selected"] [class*="badge"] {
+    margin-left: 6px !important;
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    border-radius: 10px !important;
+    padding: 2px 6px !important;
+}
+
+/* Icon spacing */
+.container__11d72 [class*="item"][class*="selected"] [class*="icon"],
+.topPill__14155 [class*="item"][class*="selected"] [class*="icon"] {
+    margin-right: 6px !important;
+}
+
+/* ================================
+   SCROLLBAR - Hidden
+   ================================ */
+
+.peopleColumn__133bf .scroller_c880e8::-webkit-scrollbar {
+    width: 0px !important;
+    display: none !important;
+}
+
+.peopleColumn__133bf .scroller_c880e8 {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
 }
 
 /* top-bar.css */

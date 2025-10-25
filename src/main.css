@@ -584,31 +584,14 @@ body {
         margin-top: 0 !important;
     }
     
-    /* Simple chat bar with expand and fade transition */
+    /* Simple chat bar - fixed width centered */
     .channelTextArea__74017 {
-        width: 40% !important;
-        margin-left: 30% !important;
-        margin-right: 30% !important;
+        width: 70% !important;
+        margin-left: 15% !important;
+        margin-right: 15% !important;
         margin-top: 0 !important;
-        opacity: 0.7 !important;
         border-radius: 14px !important;
         padding-top: 0 !important;
-        will-change: width, margin-left, margin-right, opacity !important;
-        transition: width 0.2s ease-out,
-                    margin-left 0.2s ease-out,
-                    margin-right 0.2s ease-out,
-                    opacity 0.15s ease-out !important;
-    }
-    
-    /* Expanded state - when hovered, focused, has text, or has attachments */
-    .channelTextArea__74017:hover,
-    .channelTextArea__74017:focus-within,
-    .form_f75fb0:has(.attachWrapper__74017) .channelTextArea__74017,
-    .form_f75fb0:has(.hasValue__74017) .channelTextArea__74017 {
-        width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        opacity: 1 !important;
     }
     
     /* Move typing indicator above chatbox and style as pill */
@@ -616,27 +599,12 @@ body {
         position: relative !important;
         order: -1 !important;
         margin-bottom: 2px !important;
-        width: 40% !important;
-        margin-left: 30% !important;
-        margin-right: 30% !important;
+        width: 70% !important;
+        margin-left: 15% !important;
+        margin-right: 15% !important;
         padding: 8px 16px !important;
         border-radius: 20px !important;
         background-color: var(--background-base-lower) !important;
-        transition: width 0.2s ease-out,
-                    margin-left 0.2s ease-out,
-                    margin-right 0.2s ease-out !important;
-    }
-    
-    /* Expand typing indicator when chatbox is expanded */
-    .channelTextArea__74017:hover ~ .typing_b88801,
-    .channelTextArea__74017:focus-within ~ .typing_b88801,
-    .form_f75fb0:has(.attachWrapper__74017) .typing_b88801,
-    .form_f75fb0:has(.hasValue__74017) .typing_b88801,
-    .form_f75fb0:has(.channelTextArea__74017:hover) .typing_b88801,
-    .form_f75fb0:has(.channelTextArea__74017:focus-within) .typing_b88801 {
-        width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
     }
     
     .form_f75fb0 {
@@ -644,6 +612,28 @@ body {
         flex-direction: column !important;
         padding-top: 0 !important;
         margin-top: 0 !important;
+    }
+
+    /* ============================================
+       PROFILE POPOUT - FULL WIDTH CHATBOX
+       ============================================ */
+    
+    /* Make chatbox full width in profile popout */
+    .outer_c0bea0 .channelTextArea__74017,
+    .userPanelInner__4da4c .channelTextArea__74017,
+    [class*="userPopout"] .channelTextArea__74017 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Full width typing indicator in profile popout */
+    .outer_c0bea0 .typing_b88801,
+    .userPanelInner__4da4c .typing_b88801,
+    [class*="userPopout"] .typing_b88801 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 
     /* minimal unread divider */
