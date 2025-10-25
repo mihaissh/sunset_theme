@@ -8,7 +8,7 @@
     --panel-backdrop-filter: none;
     --panel-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     --border-hover: transparent;
-    
+
     /* Performance optimizations */
     color-scheme: dark;
 }
@@ -63,15 +63,15 @@ body {
     .chat_f75fb0 > .container__0b563 {
         background-color: var(--background-base-lower);
         border-radius: 12px;
-        border: 1px solid transparent;
+        border: 1px solid hsla(30, 25%, 35%, 0.20);
         backdrop-filter: var(--panel-backdrop-filter);
         box-sizing: border-box;
         box-shadow: var(--panel-shadow);
         contain: layout style paint;
-        transition: border-color 0.2s ease-out;
+        transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
     }
     
-    /* Subtle outline on hover */
+    /* Subtle outline and warm glow on hover */
     .guilds_c48ade:hover,
     .sidebarList_c48ade:hover,
     .panels_c48ade:hover,
@@ -101,7 +101,10 @@ body {
     .chat_f75fb0 > .scrollerBase_d125d2:hover,
     .chat_f75fb0 > .header__0b563:hover,
     .chat_f75fb0 > .container__0b563:hover {
-        border-color: hsla(30, 30%, 50%, 0.15);
+        border-color: hsla(35, 40%, 45%, 0.35);
+        box-shadow: var(--panel-shadow),
+                    0 -10px 20px -12px hsla(35, 60%, 50%, 0.04),
+                    0 -6px 12px -10px hsla(45, 55%, 55%, 0.03);
     }
 
     .panels_c48ade /* user panel */ {
@@ -117,6 +120,8 @@ body {
     .guilds_c48ade /* server list */ {
         margin-bottom: calc(var(--custom-app-panels-height, 0) + var(--gap));
         margin-right: var(--gap);
+        height: fit-content !important;
+        max-height: calc(100vh - var(--gap) * 2 - var(--custom-app-panels-height, 0)) !important;
     }
     .guilds_c48ade + div:not(.sidebarList_c48ade) /* betterfolders */ {
         width: 100% !important;
@@ -132,14 +137,29 @@ body {
     .listItem__650eb {
         width: 100%;
         transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        backface-visibility: hidden;
+        -webkit-font-smoothing: subpixel-antialiased;
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    .listItem__650eb svg,
+    .listItem__650eb img,
+    .listItem__650eb [class*="wrapper"],
+    .listItem__650eb [class*="svg"] {
+        backface-visibility: hidden !important;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+        transform: translateZ(0) !important;
+        image-rendering: -webkit-optimize-contrast !important;
+        image-rendering: crisp-edges !important;
     }
     
     .listItem__650eb:hover {
-        transform: scale(1.05);
+        transform: scale(1.05) translateZ(0);
     }
     
     .listItem__650eb:active {
-        transform: scale(0.95);
+        transform: scale(0.95) translateZ(0);
     }
 
     .sidebarList_c48ade /* channel list */ {
@@ -158,22 +178,32 @@ body {
         margin-bottom: 0;
     }
     
+    /* Smaller text for channels */
+    .scroller__629e4 [class*="containerDefault"],
+    .scroller__629e4 [class*="content_"],
+    .scroller__629e4 [class*="name_"],
+    .scroller__629e4 [class*="channelName"] {
+        font-size: 13px !important;
+    }
+    
     /* Channel list items with smooth ease-out hover */
     .scroller__629e4 li[class*="containerDefault"] /* individual channel item */ {
         border-radius: 8px !important;
         margin: 2px 8px !important;
         transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                     transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        backface-visibility: hidden !important;
+        -webkit-font-smoothing: subpixel-antialiased !important;
     }
     
     .scroller__629e4 li[class*="containerDefault"]:hover {
         background-color: var(--hover) !important;
-        transform: translateX(2px) !important;
+        transform: translateX(2px) translateZ(0) !important;
     }
     
     .scroller__629e4 li[class*="containerDefault"]:active {
         background-color: var(--active) !important;
-        transform: translateX(0) !important;
+        transform: translateX(0) translateZ(0) !important;
     }
     
     /* Remove double borders/shadows and disable hover on inner elements */
@@ -240,14 +270,77 @@ body {
     .container__9293f /* friends, message requests, + other stuff titlebar */ {
         margin-bottom: var(--gap);
     }
-
-    .subtitleContainer_f75fb0 /* chat titlebar  */ {
-        margin-bottom: var(--gap);
+    
+    .container__133bf .container__9293f /* friends page top bar adaptive */ {
+        width: fit-content !important;
     }
-    .title_f75fb0 /* chat titlebar inner */ {
-        border: none;
-        background: none;
-        margin-bottom: 0;
+    
+    /* Hide "New Group DM" button on friends page */
+    .peopleColumn__133bf [aria-label*="New Group DM"],
+    .peopleColumn__133bf button[aria-label*="Create DM"] {
+        display: none !important;
+    }
+
+    /* Split top bar into two separate adaptive pill containers */
+    .subtitleContainer_f75fb0 /* chat titlebar wrapper */ {
+        margin-top: 8px !important;
+        margin-bottom: var(--gap) !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    
+    .title_f75fb0 /* channel title + toolbar container */ {
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: var(--gap) !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Channel title pill - left side */
+    .title_f75fb0 .children__9293f {
+        flex: 0 0 auto !important;
+        background-color: var(--background-base-lower) !important;
+        border-radius: 24px !important;
+        box-shadow: var(--panel-shadow) !important;
+        padding: 0 20px !important;
+        width: fit-content !important;
+        display: flex !important;
+        align-items: center !important;
+        height: 48px !important;
+        border: 1px solid transparent !important;
+        transition: border-color 0.2s ease-out !important;
+    }
+    
+    .title_f75fb0 .children__9293f:hover {
+        border-color: hsla(30, 30%, 50%, 0.15) !important;
+    }
+    
+    /* Toolbar pill - right side */
+    .title_f75fb0 .toolbar__9293f {
+        flex: 0 0 auto !important;
+        background-color: var(--background-base-lower) !important;
+        border-radius: 24px !important;
+        box-shadow: var(--panel-shadow) !important;
+        padding: 0 16px !important;
+        width: auto !important;
+        min-width: fit-content !important;
+        height: 48px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        border: 1px solid transparent !important;
+        margin-left: auto !important;
+        transition: border-color 0.2s ease-out !important;
+    }
+    
+    .title_f75fb0 .toolbar__9293f:hover {
+        border-color: hsla(30, 30%, 50%, 0.15) !important;
     }
 
     .page_c48ade > div > .chat_f75fb0 > .content_f75fb0 /* chat outer */ {
@@ -285,16 +378,47 @@ body {
         padding: 2px;
         transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
                     transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        backface-visibility: hidden;
+        -webkit-font-smoothing: subpixel-antialiased;
     }
     
     .member_c8ffbb:hover {
         background-color: var(--hover) !important;
-        transform: translateX(2px);
+        transform: translateX(2px) translateZ(0);
     }
     
     .member_c8ffbb:active {
         background-color: var(--active) !important;
-        transform: translateX(0);
+        transform: translateX(0) translateZ(0);
+    }
+    
+    /* Disable hover on voice channel container */
+    .scroller__629e4 li[class*="containerDefault"][class*="voiceChannel"]:hover,
+    .scroller__629e4 li[class*="containerDefault"]:has(.voiceUsers__7aaec):hover {
+        background-color: transparent !important;
+        transform: none !important;
+    }
+    
+    /* Voice channel participants with smooth ease-out hover */
+    .voiceUser__7aaec /* voice channel participant */ {
+        background: none !important;
+        border-radius: 8px !important;
+        margin: 1px 8px !important;
+        padding: 2px !important;
+        transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                    transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        backface-visibility: hidden !important;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+    }
+    
+    .voiceUser__7aaec:hover {
+        background-color: var(--hover) !important;
+        transform: translateX(2px) translateZ(0) !important;
+    }
+    
+    .voiceUser__7aaec:active {
+        background-color: var(--active) !important;
+        transform: translateX(0) translateZ(0) !important;
     }
 
     .resizeHandle__01ae2 /* resize handle */ {
@@ -637,10 +761,60 @@ body {
         will-change: transform;
     }
     
-    /* Folder transitions - reduced */
-    .folder__48112,
+    /* Folder transitions with fade in/out */
+    .folder__48112 {
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        backface-visibility: hidden !important;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+        transform: translateZ(0) !important;
+        will-change: transform !important;
+    }
+    
+    /* Fix folder icon blur */
+    .folder__48112 svg,
+    .folder__48112 img,
+    .folder__48112 [class*="wrapper"],
+    .folder__48112 [class*="folderIcon"],
+    .expandedFolderIconWrapper__48112,
+    .expandedFolderIconWrapper__48112 svg,
+    .closedFolderIconWrapper__48112,
+    .closedFolderIconWrapper__48112 svg {
+        backface-visibility: hidden !important;
+        -webkit-font-smoothing: subpixel-antialiased !important;
+        transform: translateZ(0) !important;
+        image-rendering: -webkit-optimize-contrast !important;
+    }
+    
+    /* Expanded folder content - fade in/out animation */
     .expandedFolderBackground__48112 {
-        transition: transform 0.15s ease, opacity 0.15s ease !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        backface-visibility: hidden !important;
+    }
+    
+    .expandedFolderBackground__48112 [class*="listItems"] {
+        opacity: 0;
+        transform: translateY(-8px) translateZ(0);
+        transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        backface-visibility: hidden !important;
+    }
+    
+    .expandedFolderBackground__48112[style*="height"] [class*="listItems"] {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+    
+    /* Remove folder highlight colors and backgrounds */
+    .folder__48112,
+    .folder__48112:hover,
+    .expandedFolderBackground__48112,
+    .expandedFolderBackground__48112::before,
+    .expandedFolderBackground__48112::after {
+        background-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
     }
     
     /* Button transitions - optimized */
@@ -649,9 +823,20 @@ body {
         transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
     
-    /* Fix folder icon colors */
-    .expandedFolderIconWrapper__48112 svg {
-        color: var(--orange-2) !important;
+    /* Remove folder icon highlight colors */
+    .folder__48112,
+    .expandedFolderIconWrapper__48112,
+    .expandedFolderIconWrapper__48112 svg,
+    .closedFolderIconWrapper__48112,
+    .closedFolderIconWrapper__48112 svg {
+        color: var(--text-3) !important;
+        background: transparent !important;
+    }
+    
+    /* Remove any colored backgrounds from folder items */
+    .folder__48112[style*="background"],
+    .expandedFolderBackground__48112[style*="background"] {
+        background: transparent !important;
     }
     
     /* Fix toolbar */

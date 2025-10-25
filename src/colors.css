@@ -13,11 +13,11 @@
     --text-4: hsl(0, 0%, 50%); /* icon buttons and channels */
     --text-5: hsl(0, 0%, 35%); /* muted channels/chats and timestamps */
 
-    /* background and dark colors - Clean dark theme */
-    --bg-1: hsl(0, 0%, 18%); /* dark buttons when clicked */
-    --bg-2: hsl(0, 0%, 14%); /* dark buttons */
-    --bg-3: hsl(0, 0%, 11%); /* spacing, secondary elements */
-    --bg-4: hsl(0, 0%, 8%); /* main background color */
+    /* background and dark colors - Clean dark theme with better contrast */
+    --bg-1: hsl(0, 0%, 14%); /* dark buttons when clicked */
+    --bg-2: hsl(0, 0%, 10%); /* dark buttons */
+    --bg-3: hsl(0, 0%, 7%); /* spacing, secondary elements */
+    --bg-4: hsl(0, 0%, 2%); /* main background color - much darker for better container visibility */
     --hover: hsla(30, 60%, 50%, 0.10); /* channels and buttons when hovered */
     --active: hsla(30, 60%, 50%, 0.15); /* channels and buttons when clicked or selected */
     --active-2: hsla(30, 60%, 50%, 0.20); /* extra state for transparent buttons */
