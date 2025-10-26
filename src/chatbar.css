@@ -29,7 +29,7 @@ body {
             right: 0;
             background-color: var(--chat-background-default);
             padding: 0 8px;
-            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            border-radius: 12px 12px 0 0;
             border: 1px solid var(--chatbar-border-color);
             border-bottom: none;
             transition: none;
@@ -45,7 +45,7 @@ body {
         .form_f75fb0:has(.base_b88801) {
             .channelTextArea_f75fb0,
             .wrapper__44df5 {
-                border-radius: 0 0 var(--radius-md) var(--radius-md);
+                border-radius: 0 0 12px 12px;
             }
         }
         .form_f75fb0:has(.channelTextArea__74017:focus-within) {
@@ -62,7 +62,7 @@ body {
         }
         .wrapper__44df5 /* phone verification bar */ {
             margin: 0;
-            border-radius: var(--radius-md);
+            border-radius: 12px;
         }
     }
 }
@@ -77,7 +77,7 @@ body {
         }
         .messagesWrapper__36d07 {
             background-color: var(--background-base-lower);
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             border: var(--border-thickness) solid var(--border-subtle);
             backdrop-filter: var(--panel-backdrop-filter);
             transition: border-color var(--border-hover-transition);
@@ -100,7 +100,7 @@ body {
             right: 0;
             background: var(--background-base-lower);
             height: 26px;
-            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+            border-radius: 0 0 16px 16px;
             z-index: 2;
         }
         .form_f75fb0 {
@@ -115,7 +115,7 @@ body {
             order: -1;
             top: calc(-26px + var(--border-thickness) * -1);
             left: calc(var(--border-thickness));
-            border-radius: 0 0 0 var(--radius-lg);
+            border-radius: 0 0 0 16px;
             padding: 0 0 0 var(--space-sm);
             height: 26px;
         }
@@ -125,7 +125,7 @@ body {
         .channelTextArea_f75fb0 {
             margin: 0;
             background-color: var(--background-base-lower);
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             border: var(--border-thickness) solid var(--border-subtle);
             backdrop-filter: var(--panel-backdrop-filter);
             transition: border-color var(--border-hover-transition);
@@ -141,7 +141,7 @@ body {
             margin: var(--gap) 0 0 0;
             height: var(--chatbar-height);
             padding: 0;
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             border: var(--border-thickness) solid var(--border-subtle);
             backdrop-filter: var(--panel-backdrop-filter);
             transition: border-color var(--border-hover-transition);
