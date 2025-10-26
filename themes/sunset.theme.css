@@ -8,7 +8,8 @@
 */
 
 /* import theme modules */
-@import url('https://raw.githubusercontent.com/MihaiStraculencu/sunset_theme/master/build/sunset.css');
+/* @import url('https://raw.githubusercontent.com/MihaiStraculencu/sunset_theme/master/build/sunset.css'); */
+@import url('file:///D:/Github/midnight-discord/build/sunset.css');
 
 body {
     /* font options - Apple San Francisco */
