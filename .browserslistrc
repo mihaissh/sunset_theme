@@ -1,0 +1,6 @@
+# Discord uses Electron which is based on Chromium
+# Target modern browsers for optimal performance
+last 2 Chrome versions
+last 2 ChromeAndroid versions
+last 2 Edge versions
+

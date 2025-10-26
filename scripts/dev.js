@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
+const {
+    processCSS,
+    combineSourceFiles,
+    debounce
+} = require('./utils');
 
 require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 
@@ -12,82 +17,130 @@ const outputPaths = process.env.DEV_OUTPUT_PATH ? process.env.DEV_OUTPUT_PATH.sp
 
 // Ensure output paths are set
 if (outputPaths.length === 0) {
-    console.error('DEV_OUTPUT_PATH is not set in .env file');
+    console.error('❌ DEV_OUTPUT_PATH is not set in .env file');
+    console.log('\n💡 Create a .env file with:');
+    console.log('   DEV_OUTPUT_PATH=/path/to/your/BetterDiscord/themes/sunset.css');
     process.exit(1);
 }
 
-// Combine all CSS files from the source directory
-function combineSourceFiles() {
-    let combinedCSS = '';
+// Track ongoing builds to prevent race conditions
+let isBuilding = false;
+let buildQueue = false;
 
-    // Get all CSS files
-    const allFiles = fs
-        .readdirSync(srcDir)
-        .filter((file) => file.endsWith('.css'))
-        .map((file) => path.join(srcDir, file));
-
-    // Split into main.css and other files
-    const mainFile = allFiles.find((file) => path.basename(file) === 'main.css');
-    const otherFiles = allFiles.filter((file) => path.basename(file) !== 'main.css');
-
-    // Process main.css first if it exists
-    if (mainFile) {
-        const mainContent = fs.readFileSync(mainFile, 'utf8');
-        combinedCSS += `/* ${path.basename(mainFile)} */\n${mainContent}\n`;
-    }
-
-    // Then process other files
-    otherFiles.forEach((file) => {
-        const content = fs.readFileSync(file, 'utf8');
-        combinedCSS += `/* ${path.basename(file)} */\n${content}\n`;
-    });
-
-    fs.writeFileSync(buildFile, combinedCSS);
-    return combinedCSS;
-}
-
-// Process the base file and replace imports with actual content
+/**
+ * Process the base file and replace imports with compiled CSS
+ * @param {string} compiledCSS - Compiled and processed CSS
+ */
 function processBaseFile(compiledCSS) {
     const baseContent = fs.readFileSync(baseFile, 'utf8');
     const importRegex = /@import\s+url\(['"]?[^'"]+['"]?\);/g;
 
     const processedContent = baseContent.replace(importRegex, compiledCSS);
 
+    // Write to build directory
+    fs.writeFileSync(buildFile, processedContent);
+
+    // Write to dev output paths
     outputPaths.forEach((outputPath) => {
-        fs.writeFileSync(outputPath, processedContent);
-        console.log(`Updated ${outputPath}`);
+        try {
+            fs.writeFileSync(outputPath.trim(), processedContent);
+            console.log(`✅ Updated ${outputPath.trim()}`);
+        } catch (error) {
+            console.error(`❌ Failed to write to ${outputPath.trim()}:`, error.message);
+        }
     });
 }
 
-// Main function to process files
-function processFiles() {
+/**
+ * Main processing function
+ */
+async function processFiles() {
+    // If already building, queue another build
+    if (isBuilding) {
+        buildQueue = true;
+        return;
+    }
+
+    isBuilding = true;
+    const startTime = Date.now();
+
     try {
-        const compiledCSS = combineSourceFiles();
-        processBaseFile(compiledCSS);
+        // Combine source files
+        const combinedCSS = combineSourceFiles(srcDir);
+        
+        // Process CSS with PostCSS (autoprefixer only in dev mode)
+        const processedCSS = await processCSS(combinedCSS, false);
+        
+        // Write processed content
+        processBaseFile(processedCSS);
+        
+        const buildTime = Date.now() - startTime;
+        console.log(`⚡ Build completed in ${buildTime}ms`);
+        
     } catch (error) {
-        console.error('Error processing files:', error);
+        console.error('❌ Build failed:', error.message);
+    } finally {
+        isBuilding = false;
+        
+        // Process queued build if any
+        if (buildQueue) {
+            buildQueue = false;
+            setTimeout(processFiles, 0);
+        }
     }
 }
 
+// Debounced version of processFiles (300ms delay)
+// This prevents multiple rapid rebuilds when saving multiple files
+const debouncedProcess = debounce(processFiles, 300);
+
+// Initial build
+console.log('🚀 Starting development mode...');
+console.log(`📂 Watching: ${srcDir}`);
+console.log(`📝 Base file: ${baseFile}`);
+console.log('📤 Output paths:');
+outputPaths.forEach((p) => console.log(`   - ${p.trim()}`));
+console.log('\n👀 Watching for changes...\n');
+
 processFiles();
 
-// Set up watchers
+// Set up file watcher
 const watcher = chokidar.watch([baseFile, `${srcDir}/**/*.css`], {
     ignoreInitial: true,
+    persistent: true,
+    awaitWriteFinish: {
+        stabilityThreshold: 100,
+        pollInterval: 50
+    }
 });
 
 // Watch for changes
 watcher
     .on('change', (filePath) => {
-        console.log(`File changed: ${filePath}`);
-        processFiles();
+        console.log(`📝 File changed: ${path.basename(filePath)}`);
+        debouncedProcess();
     })
     .on('add', (filePath) => {
-        console.log(`New file added: ${filePath}`);
-        processFiles();
+        console.log(`➕ New file added: ${path.basename(filePath)}`);
+        debouncedProcess();
     })
     .on('unlink', (filePath) => {
-        console.log(`File deleted: ${filePath}`);
-        processFiles();
+        console.log(`🗑️  File deleted: ${path.basename(filePath)}`);
+        debouncedProcess();
     })
-    .on('error', (error) => console.error(`Watcher error: ${error}`));
+    .on('error', (error) => {
+        console.error(`❌ Watcher error: ${error.message}`);
+    });
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+    console.log('\n\n👋 Shutting down dev server...');
+    watcher.close();
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('\n\n👋 Shutting down dev server...');
+    watcher.close();
+    process.exit(0);
+});
