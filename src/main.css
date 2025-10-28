@@ -251,9 +251,13 @@ body {
         border: none !important;
         background: none;
     }
+    .chat_f75fb0 > .content_f75fb0 {
+        display: flex;
+        gap: var(--gap); /* Consistent spacing between chat and members list */
+    }
     .chatContent_f75fb0 {
         overflow: visible;
-        margin-right: 0; /* Remove margin - member list has its own margin-left */
+        margin-right: 0;
     }
     .container__133bf /* friends page group outer */,
     .page_c48ade {
@@ -350,8 +354,6 @@ body {
         border: none !important;
         background: none !important;
         box-shadow: none !important;
-        display: flex;
-        gap: var(--gap); /* Proper spacing between chat and profile sidebar */
     }
     .tabBody__133bf /* friends page */ {
         border: none !important;
@@ -368,7 +370,6 @@ body {
     /* Member list container - normal Discord width */
     .container_c8ffbb,
     .content_f75fb0 > .membersWrap_c8ffbb {
-        margin-left: var(--gap);
         overflow: visible;
         height: auto;
         width: 280px !important; /* Increased width for better readability */
