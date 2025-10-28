@@ -351,7 +351,7 @@ body {
         background: none !important;
         box-shadow: none !important;
         display: flex;
-        gap: 0;
+        gap: var(--gap); /* Proper spacing between chat and profile sidebar */
     }
     .tabBody__133bf /* friends page */ {
         border: none !important;
@@ -560,12 +560,11 @@ body {
        Base styling (background, border, shadow) inherited from main panel list above */
     .content_f75fb0 > .outer_c0bea0,
     .user-profile-sidebar {
-        margin-left: var(--gap) !important; /* Consistent spacing with other containers - 12px */
         overflow: hidden !important;
         height: auto !important;
         min-width: 340px !important;
         max-width: 400px !important;
-        border-radius: 20px !important; /* Override base 12px with larger rounded corners */
+        border-radius: 20px !important; /* Enhanced rounded corners to match other containers */
         padding: 0 !important;
     }
     
@@ -586,6 +585,16 @@ body {
     }
     
     /* Mutual servers and mutual friends scrollable sections - comprehensive selectors */
+    .content_f75fb0 > .outer_c0bea0 [class*="listScroller"],
+    .content_f75fb0 > .outer_c0bea0 [class*="mutualGuilds"],
+    .content_f75fb0 > .outer_c0bea0 [class*="mutualFriends"],
+    .content_f75fb0 > .outer_c0bea0 [class*="guildList"],
+    .content_f75fb0 > .outer_c0bea0 [class*="friendsList"],
+    .content_f75fb0 > .outer_c0bea0 [class*="list"] > div[style*="height"],
+    .content_f75fb0 > .outer_c0bea0 div[class*="mutual"] > div,
+    .content_f75fb0 > .outer_c0bea0 div[role="list"],
+    .content_f75fb0 > .outer_c0bea0 section[class*="section"],
+    .content_f75fb0 > .outer_c0bea0 [class*="body"],
     .user-profile-sidebar [class*="listScroller"],
     .user-profile-sidebar [class*="mutualGuilds"],
     .user-profile-sidebar [class*="mutualFriends"],
@@ -593,15 +602,21 @@ body {
     .user-profile-sidebar [class*="friendsList"],
     .user-profile-sidebar [class*="list"] > div[style*="height"],
     .user-profile-sidebar div[class*="mutual"] > div,
-    .user-profile-sidebar div[role="list"] {
-        max-height: 200px !important;
+    .user-profile-sidebar div[role="list"],
+    .user-profile-sidebar section[class*="section"],
+    .user-profile-sidebar [class*="body"] {
+        max-height: 250px !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
     }
     
-    /* Ensure parent containers don't restrict */
+    /* Ensure parent containers don't restrict - allow overflow for scrollable content */
+    .content_f75fb0 > .outer_c0bea0 [class*="listRow"],
+    .content_f75fb0 > .outer_c0bea0 [class*="listItem"],
+    .content_f75fb0 > .outer_c0bea0 [class*="section"],
     .user-profile-sidebar [class*="listRow"],
-    .user-profile-sidebar [class*="listItem"] {
+    .user-profile-sidebar [class*="listItem"],
+    .user-profile-sidebar [class*="section"] {
         overflow: visible !important;
     }
     
